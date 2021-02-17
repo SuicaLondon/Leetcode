@@ -21,5 +21,5 @@ let multiply = function(num1, num2) {
 // console.log(multiply("123", "456"))
 // console.log(multiply("92", "83"))
 // console.log(multiply("9", "99"))
-console.log(multiply("17039", "7218"))
+// console.log(multiply("17039", "7218"))
 // console.log(multiply("123456789", "987654321") , 123456789*987654321)
