@@ -7,15 +7,15 @@ var moveZeroes = function (nums) {
 		return nums
 	}
     let arranged = 0
-	for (let i = nums.length - 1; i >= 0; i--) {
-		if (nums[i] === 0 && nums[i+1] !== 0) {
-			for (let j = i + 1; j < nums.length - arranged; j++) {
-                [nums[j - 1], nums[j]] = [nums[j], nums[j - 1]]
-                if (j === nums.length - arranged - 1) {
-                    arranged++
-                }
-            }
+	for (let i = 0; i < nums.length; i++) {
+		if (nums[i] === 0) {
+            arranged++
+            continue
 		}
+        if (arranged > 0) {
+            nums[i - arranged] = nums[i]
+            nums[i] = 0
+        }
 	}
     return nums
 }
