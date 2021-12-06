@@ -3,17 +3,18 @@
  * @return {number}
  */
 let minOperations = function (logs) {
-	let records = []
+	let result = 0
 	for (let i = 0; i < logs.length; i++) {
 		let log = logs[i]
 		if (log === '../') {
-			records.pop()
+			if (result !== 0) result--
 		} else if (log === './') {
+			continue
 		} else {
-			records.push(log)
+			result++
 		}
 	}
-	return records.length
+	return result
 }
 
 console.log(minOperations(['d1/', 'd2/', '../', 'd21/', './']))
