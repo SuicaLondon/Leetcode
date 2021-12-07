@@ -3,10 +3,10 @@
  * @param {string} stones
  * @return {number}
  */
-let numJewelsInStones = function (jewels, stones) {
+ let numJewelsInStones = function (jewels, stones) {
     let counter = 0
-    for (let stone of stones) {
-        if (jewels.includes(stone)) {
+    for (let i = 0; i < stones.length; i++) {
+        if (jewels.includes(stones[i])) {
             counter++
         }
     }
