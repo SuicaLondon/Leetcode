@@ -7,12 +7,8 @@ let maxProfit = function (prices) {
 	let profit = 0
 	for (let i = 1; i < prices.length; i++) {
 		let price = prices[i]
-		if (min > price) {
-			min = price
-		}
-		if (profit < price - min) {
-			profit = price - min
-		}
+        min = min > price ? price : min
+        profit = profit < price - min ? profit = price - min : profit
 	}
 	return profit
 }
