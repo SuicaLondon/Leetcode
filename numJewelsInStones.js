@@ -5,10 +5,8 @@
  */
  let numJewelsInStones = function (jewels, stones) {
     let counter = 0
-    for (let i = 0; i < stones.length; i++) {
-        if (jewels.includes(stones[i])) {
-            counter++
-        }
+    for (let i = 0; i < jewels.length; i++) {
+        counter += stones.split(jewels[i]).length - 1
     }
     return counter
 }
