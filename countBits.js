@@ -4,8 +4,12 @@
  */
 let countBits = function (n) {
     let list = [0]
+    let offset = 1
     for (let i = 1; i < n; i++) {
-        list[i] = list[i & (i - 1)] + 1
+        if (offset * 2 == i) {
+            offset = i
+        }
+        list[i] = 1 + list[i - offset]
     }
     return list
 }
