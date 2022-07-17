@@ -7,8 +7,6 @@ let summaryRanges = function (nums) {
     let str = ''
     let list = []
     for (let i = 0; i < nums.length; i++) {
-        console.log('------')
-        console.log(str, ': ', previous, ' num: ', nums[i])
         if (str !== '') {
             if (nums[i] !== previous + 1) {
                 if (parseInt(str, 10) !== previous) {
@@ -36,8 +34,6 @@ let summaryRanges = function (nums) {
                 list.push(str)
             }
         }
-        console.log(str, ': ', previous)
-        console.log(list)
     }
     return list
 }
