@@ -6,11 +6,11 @@
  */
 let construct2DArray = function (original, m, n) {
     if (original.length !== m * n) return []
-    let list = []
+    let list = [], index = 0
     for (let i = 0; i < m; i++) {
         let l = []
         for (let j = 0; j < n; j++) {
-            l.push(original.shift())
+            l.push(original[index++])
         }
         list.push(l)
     }
