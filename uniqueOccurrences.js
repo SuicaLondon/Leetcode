@@ -7,6 +7,15 @@ let uniqueOccurrences = function (arr) {
     for (let i = 0; i < arr.length; i++) {
         obj[arr[i]] = obj[arr[i]] ? obj[arr[i]] + 1 : 1
     }
+    // let obj2 = {}
+    // for (let o of Object.values(obj)) {
+    //     if (obj2[o]) {
+    //         return false
+    //     } else {
+    //         obj2[o] = 1
+    //     }
+    // }
+    // return true
     let val = Object.values(obj)
     let unique = [...new Set(val)]
     return val.length === unique.length
