@@ -4,9 +4,9 @@
  * @param {number} start
  * @return {number}
  */
-let getMinDistance = function (nums, target, start) {
+ let getMinDistance = function (nums, target, start) {
     let i = start, j = start
-    while (nums[i] !== target || nums[j] !== target) {
+    while (true) {
         if (nums[i] === target) return Math.abs(start - i)
         if (nums[j] === target) return Math.abs(start - j)
         if (i < nums.length) i++
