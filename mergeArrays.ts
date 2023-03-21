@@ -3,18 +3,18 @@ function mergeArrays(nums1: number[][], nums2: number[][]): number[][] {
     let result: number[][] = []
     while (true) {
         let currentId = index + 1;
-        let arr = [currentId, 0]
-        if (nums1.length == 0 && nums2.length == 0) break
+        let arr: number[]
         if (nums1[0] && nums1[0][0] == currentId) {
             arr = nums1.shift()
         }
         if (nums2[0] && nums2[0][0] == currentId) {
             let value = nums2.shift()
-            arr[1] += value[1]
+            arr = arr ? [arr[0], arr[1] + value[1]] : value
         }
-        if (arr[1] != 0) {
+        if (arr) {
             result.push(arr)
         }
+        if (nums1.length == 0 && nums2.length == 0) break
         index++
     }
     return result
