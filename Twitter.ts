@@ -1,6 +1,5 @@
 type User = {
     userId: number
-    tweets: Tweet[]
     followee: { number: User }
     follower: { number: User }
 }
@@ -18,22 +17,21 @@ class Twitter {
         this.tweets = []
     }
 
-    postTweet(userId: number, tweetId: number): void {
-        const newTweet = { userId, tweetId }
+    getUser(userId: number): User {
         if (this.users[userId] == undefined) {
             this.users[userId] = {
                 userId,
-                tweets: [
-                    newTweet
-                ],
                 followee: [],
                 follower: []
             }
-            this.tweets.push(newTweet)
-        } else {
-            this.users[userId].tweets.push(newTweet)
-            this.tweets.push(newTweet)
         }
+        return this.users[userId]
+    }
+
+    postTweet(userId: number, tweetId: number): void {
+        const newTweet = { userId, tweetId }
+        this.getUser(userId)
+        this.tweets.push(newTweet)
     }
 
     getNewsFeed(userId: number): number[] {
@@ -66,8 +64,8 @@ class Twitter {
                 follower: {}
             }
         }
-        this.users[followerId].followee[followeeId] = this.users[followeeId]
-        this.users[followeeId].follower[followerId] = this.users[followerId]
+        this.getUser(followerId).followee[followeeId] = this.users[followeeId]
+        this.getUser(followeeId).follower[followerId] = this.users[followerId]
     }
 
     unfollow(followerId: number, followeeId: number): void {
