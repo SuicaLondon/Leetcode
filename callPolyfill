@@ -1,0 +1,22 @@
+export {}
+declare global { 
+    interface Function {
+      callPolyfill(context: Record<any, any>, ...args: any[]): any;
+	}
+}
+
+Function.prototype.callPolyfill = function(context:  { [key in symbol | string]: any }, ...args): any {
+    const functionSymbol: unique symbol = Symbol('functionSymbol')
+    context[functionSymbol] = this
+    return context[functionSymbol](...args)
+}
+
+/**
+ * function increment() { this.count++; return this.count; }
+ * increment.callPolyfill({count: 1}); // 2
+ */
+
+const fn = function add(b) {
+    return this.a + b;
+  }
+fn.callPolyfill({"a": 5}, 7)
