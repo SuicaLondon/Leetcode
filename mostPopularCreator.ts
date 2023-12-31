@@ -1,7 +1,6 @@
 interface Content {
 	sum: number
-	max: number
-	maxId: string
+	video: number
 }
 
 type ContentMap = Record<string, Content>
@@ -11,42 +10,33 @@ function mostPopularCreator(
 	ids: string[],
 	views: number[]
 ): string[][] {
+	let max = 0
 	const contentMap: ContentMap = {}
 	for (let i = 0; i < ids.length; i++) {
 		const creator = creators[i]
-		const id = ids[i]
-		const view = views[i]
 		if (contentMap[creator]) {
-			if (view > contentMap[creator].max) {
-				contentMap[creator] = {
-					sum: contentMap[creator].sum + view,
-					max: view,
-					maxId: id,
-				}
-			} else if (view === contentMap[creator].max) {
-				if (id < contentMap[creator].maxId) {
-					contentMap[creator].maxId = id
-				}
-				contentMap[creator].sum = contentMap[creator].sum + view
-			} else {
-				contentMap[creator].sum = contentMap[creator].sum + view
+			contentMap[creator].sum = contentMap[creator].sum + views[i]
+			if (
+				views[contentMap[creator].video] < views[i] ||
+				(views[contentMap[creator].video] === views[i] &&
+					ids[i] < ids[contentMap[creator].video])
+			) {
+				contentMap[creator].video = i
 			}
 		} else {
 			contentMap[creator] = {
-				sum: view,
-				max: view,
-				maxId: id,
+				sum: views[i],
+				video: i,
 			}
 		}
-	}
-	let max = 0
-	let result = []
-	for (const creator in contentMap) {
 		if (contentMap[creator].sum > max) {
 			max = contentMap[creator].sum
-			result = [[creator, contentMap[creator].maxId]]
-		} else if (contentMap[creator].sum === max) {
-			result.push([creator, contentMap[creator].maxId])
+		}
+	}
+	let result = []
+	for (const creator in contentMap) {
+		if (contentMap[creator].sum === max) {
+			result.push([creator, ids[contentMap[creator].video]])
 		}
 	}
 	return result
