@@ -24,21 +24,13 @@ class TreeNode {
 }
 
 function sumNumbers(root: TreeNode | null): number {
-	let sum = 0
-	const sumBranch = (root: TreeNode | null, numStr: string) => {
-		console.log(root, numStr)
-		if (root.left === null && root.right === null) {
-			sum += parseInt(numStr, 10)
+	const sumBranch = (root: TreeNode | null, numStr: string): number => {
+		if (root === null) {
+			return 0
 		}
-
-		if (root.left !== null) {
-			sumBranch(root.left, numStr + root.left.val)
-		}
-
-		if (root.right !== null) {
-			sumBranch(root.right, numStr + root.right.val)
-		}
+		const newVal = numStr + root.val
+		if (!root.left && !root.right) return parseInt(newVal)
+		return sumBranch(root.left, newVal) + sumBranch(root.right, newVal)
 	}
-	sumBranch(root, root.val.toString())
-	return sum
+	return sumBranch(root, '')
 }
