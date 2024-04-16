@@ -4,12 +4,6 @@ function addOneRow(
 	depth: number
 ): TreeNode | null {
 	function accessNextRow(childRoot: TreeNode | null, currentDepth: number) {
-		if (childRoot === null) {
-			childRoot.left = new TreeNode(val, childRoot.left, childRoot.right)
-			childRoot.right = new TreeNode(val, childRoot.left, childRoot.right)
-			return
-		}
-
 		if (currentDepth === depth) {
 			let branch = childRoot
 			root = new TreeNode(val, branch, null)
