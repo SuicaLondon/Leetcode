@@ -22,11 +22,11 @@ function minDistance(word1: string, word2: string): number {
 			return value
 		}
 
-		const dele: number = 1 + recursiveDistance(word1, word2, i - 1, j)
-		const ins: number = 1 + recursiveDistance(word1, word2, i, j - 1)
-		const rep: number = 1 + recursiveDistance(word1, word2, i - 1, j - 1)
+		const deleted: number = 1 + recursiveDistance(word1, word2, i - 1, j)
+		const inserted: number = 1 + recursiveDistance(word1, word2, i, j - 1)
+		const replaced: number = 1 + recursiveDistance(word1, word2, i - 1, j - 1)
 
-		const min = Math.min(dele, ins, rep)
+		const min = Math.min(deleted, inserted, replaced)
 		wordMap.set(key, min)
 		return min
 	}
