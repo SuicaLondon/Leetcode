@@ -5,8 +5,8 @@ function threeSum(nums: number[]): number[][] {
 	const result: number[][] = []
 	const set = new Set()
 	for (let i = 0; i < nums.length - 2; i++) {
-		let left = i + 1
 		if (i > 0 && nums[i] === nums[i - 1]) continue
+		let left = i + 1
 		let right = nums.length - 1
 		while (left < right) {
 			const sum = nums[i] + nums[left] + nums[right]
