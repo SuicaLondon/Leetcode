@@ -4,6 +4,7 @@
   },
   "devDependencies": {
     "@types/node": "^18.15.3",
-    "ts-node": "^10.9.1"
+    "ts-node": "^10.9.1",
+    "tsx": "^4.20.6"
   }
 }
